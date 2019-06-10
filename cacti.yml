@@ -1,0 +1,23 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: cacti
+  labels:
+    app: cacti
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cacti
+    spec:
+      containers:
+      - name: cacti
+        image: quantumobject/docker-cacti
+        imagePullPolicy: Always
+        env:
+        - name: TZ
+          value: Europe/London
+        ports:
+        - name: http
+          containerPort: 80

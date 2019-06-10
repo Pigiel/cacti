@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cacti
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - secretName: cacti-secret
+  rules:
+  - host: cacti.localhost.com
+    http:
+      paths:
+      - backend:
+          serviceName: cacti
+          servicePort: 80
